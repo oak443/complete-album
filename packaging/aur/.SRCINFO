@@ -8,6 +8,6 @@ pkgbase = complete-album
 	license = GPL-3.0-only
 	makedepends = cargo
 	source = complete-album-0.1.0.tar.gz::https://github.com/oak443/complete-album/archive/refs/tags/v0.1.0.tar.gz
-	sha256sums = SKIP
+	sha256sums = c723aea6d920a6ddced8c21cc1e12641418885f826e8aeabe6068773b8f6c984
 
 pkgname = complete-album
