@@ -7,8 +7,16 @@ This directory holds the files for the first two distribution channels:
 2. **crates.io, AUR, and a Homebrew tap** — source installs.
 
 The workflow in `.github/workflows/release.yml` builds and uploads the GitHub
-Release assets. The AUR and Homebrew files are templates: fill in the source
-tarball checksum after the first release.
+Release assets. The AUR and Homebrew files for `v0.1.0` already carry the
+source tarball checksum; for later releases, refresh them with the checksum
+from the new tag.
+
+Live locations:
+
+- GitHub release: <https://github.com/oak443/complete-album/releases/tag/v0.1.0>
+- Homebrew tap: <https://github.com/oak443/homebrew-complete-album>
+- AUR: prepared in `packaging/aur/`; upload it to the AUR when you have an AUR
+  account.
 
 ## 0. Before the first release
 

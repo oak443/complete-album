@@ -21,11 +21,15 @@ ReplayGain, comments, user tags and non-front pictures are preserved.
 
 ## Install
 
-Prebuilt binaries are attached to each GitHub Release (Linux musl, macOS,
-Windows) together with `SHA256SUMS`.
+Prebuilt binaries are attached to each
+[GitHub Release](https://github.com/oak443/complete-album/releases/latest)
+(Linux musl, macOS, Windows) together with `SHA256SUMS`.
 
 ```bash
-# From crates.io
+# Homebrew tap
+brew install oak443/complete-album/complete-album
+
+# After the crates.io release
 cargo install complete-album
 
 # From a checkout
