@@ -1,0 +1,27 @@
+# Maintainer: oak443 <tyg8614@gmail.com>
+pkgname=complete-album
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Write Picard-compatible MusicBrainz tags and Cover Art Archive artwork into FLAC albums"
+arch=('x86_64' 'aarch64')
+url="https://github.com/oak443/complete-album"
+license=('GPL-3.0-only')
+depends=()
+makedepends=('cargo')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+# Replace SKIP with the source tarball checksum before uploading to the AUR:
+#   curl -L "$url/archive/refs/tags/v$pkgver.tar.gz" | sha256sum
+sha256sums=('SKIP')
+
+build() {
+  cd "$pkgname-$pkgver"
+  cargo build --release --locked
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  install -Dm755 target/release/complete-album "$pkgdir/usr/bin/complete-album"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 CHANGELOG.md "$pkgdir/usr/share/doc/$pkgname/CHANGELOG.md"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
