@@ -11,7 +11,7 @@ makedepends=('cargo')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
 # Replace SKIP with the source tarball checksum before uploading to the AUR:
 #   curl -L "$url/archive/refs/tags/v$pkgver.tar.gz" | sha256sum
-sha256sums=('SKIP')
+sha256sums=('88bdf689e445f0ee83cf4ca63dd6d1922a090ee860319ef131040a61ae5fb14f')
 
 build() {
   cd "$pkgname-$pkgver"
