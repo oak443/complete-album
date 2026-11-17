@@ -10,7 +10,7 @@ All notable changes to this project are documented here. The format follows
 
 - Fedora RPM spec (`complete-album.spec`).
 - COPR source build via `.copr/Makefile` with vendored Rust crates.
-- Tag-triggered COPR submission in the release workflow.
+- GitHub webhook-triggered COPR builds, with no COPR token stored in GitHub.
 - Fedora install instructions via `dnf copr enable oak443/complete-album`.
 
 ## [0.1.0] - 2026-11-17

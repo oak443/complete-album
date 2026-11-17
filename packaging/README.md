@@ -56,14 +56,26 @@ The tag starts `.github/workflows/release.yml`, which:
 Linux uses musl static binaries so the downloaded executable does not depend
 on the target machine's glibc. The two Linux targets are built with `cross`.
 
-The same tag also submits a Fedora COPR build; see the next section.
+The same tag also triggers a Fedora COPR build through a GitHub webhook;
+see the next section.
 
 ## 2. Fedora COPR
 
 The project is <https://copr.fedorainfracloud.org/coprs/oak443/complete-album/>.
 It builds `complete-album.spec` from the Git tag using `.copr/Makefile`
 (`make srpm`), with Rust crates vendored into the SRPM so the RPM build is
-offline. The release workflow's `copr` job submits the build and waits for it.
+offline.
+
+The project has no COPR token in GitHub Actions. Instead:
+
+1. The COPR package `complete-album` has **webhook rebuild** enabled.
+2. The GitHub repository has a `create` webhook pointing at COPR's GitHub
+   webhook URL (the URL includes the project ID, secret, and package name).
+3. Pushing a tag creates a `create` event, COPR resolves the tag, and builds
+   it with the package's SCM source.
+
+The secret lives only in the webhook URL; there is no `COPR_TOKEN` GitHub
+secret and no API token in the release workflow.
 
 Users enable and install with:
 
@@ -76,7 +88,7 @@ The current chroots are Fedora 43, 44, and 45 on x86_64 and aarch64. To change
 them, edit the COPR project settings or recreate it with a different
 `copr_create_project` chroot list.
 
-Manual submit after a tag:
+Manual fallback (requires a COPR API token):
 
 ```bash
 python - <<'PY'
@@ -175,7 +187,7 @@ brew install oak443/complete-album/complete-album
 - [ ] `cargo package --allow-dirty`
 - [ ] `git tag v0.1.1 && git push origin v0.1.1`
 - [ ] GitHub Release assets and `SHA256SUMS` look right
-- [ ] COPR build succeeded for all Fedora chroots
+- [ ] webhook-triggered COPR build succeeded for all Fedora chroots
 - [ ] `cargo publish`
 - [ ] AUR checksum updated and `makepkg -si` tested
 - [ ] Homebrew checksum updated and `brew test` passed
