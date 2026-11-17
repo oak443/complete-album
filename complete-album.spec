@@ -1,5 +1,5 @@
 Name:           complete-album
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        Write Picard-compatible MusicBrainz tags and Cover Art Archive artwork into FLAC albums
 License:        GPL-3.0-only

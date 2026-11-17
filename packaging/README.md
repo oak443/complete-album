@@ -7,13 +7,13 @@ This directory holds the files for the first two distribution channels:
 2. **crates.io, AUR, and a Homebrew tap** — source installs.
 
 The workflow in `.github/workflows/release.yml` builds and uploads the GitHub
-Release assets. The AUR and Homebrew files for `v0.1.0` already carry the
+Release assets. The AUR and Homebrew files for `v0.1.1` already carry the
 source tarball checksum; for later releases, refresh them with the checksum
 from the new tag.
 
 Live locations:
 
-- GitHub release: <https://github.com/oak443/complete-album/releases/tag/v0.1.0>
+- GitHub release: <https://github.com/oak443/complete-album/releases/tag/v0.1.1>
 - Homebrew tap: <https://github.com/oak443/homebrew-complete-album>
 - AUR: prepared in `packaging/aur/`; upload it to the AUR when you have an AUR
   account.
@@ -33,8 +33,8 @@ email. Do not upload a package with a placeholder address.
 ## 1. GitHub Release
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.1.1
+git push origin v0.1.1
 ```
 
 The tag starts `.github/workflows/release.yml`, which:
@@ -107,7 +107,7 @@ formula to `Formula/complete-album.rb`.
 After the GitHub release:
 
 ```bash
-curl -L "https://github.com/oak443/complete-album/archive/refs/tags/v0.1.0.tar.gz" \
+curl -L "https://github.com/oak443/complete-album/archive/refs/tags/v0.1.1.tar.gz" \
   | shasum -a 256
 ```
 
@@ -127,13 +127,13 @@ brew install oak443/complete-album/complete-album
 
 ## Release checklist
 
-- [ ] `Cargo.toml` version matches the tag (`v0.1.0` → `0.1.0`)
+- [ ] `Cargo.toml` version matches the tag (`v0.1.1` → `0.1.0`)
 - [ ] `CHANGELOG.md` has the version's section
 - [ ] `cargo fmt --check`
 - [ ] `cargo clippy --all-targets -- -D warnings`
 - [ ] `cargo test --locked`
 - [ ] `cargo package --allow-dirty`
-- [ ] `git tag v0.1.0 && git push origin v0.1.0`
+- [ ] `git tag v0.1.1 && git push origin v0.1.1`
 - [ ] GitHub Release assets and `SHA256SUMS` look right
 - [ ] `cargo publish`
 - [ ] AUR checksum updated and `makepkg -si` tested

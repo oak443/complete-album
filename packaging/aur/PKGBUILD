@@ -1,6 +1,6 @@
 # Maintainer: oak443 <tyg8614@gmail.com>
 pkgname=complete-album
-pkgver=0.1.0
+pkgver=0.1.1
 pkgrel=1
 pkgdesc="Write Picard-compatible MusicBrainz tags and Cover Art Archive artwork into FLAC albums"
 arch=('x86_64' 'aarch64')
@@ -11,7 +11,7 @@ makedepends=('cargo')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
 # Replace SKIP with the source tarball checksum before uploading to the AUR:
 #   curl -L "$url/archive/refs/tags/v$pkgver.tar.gz" | sha256sum
-sha256sums=('c723aea6d920a6ddced8c21cc1e12641418885f826e8aeabe6068773b8f6c984')
+sha256sums=('SKIP')
 
 build() {
   cd "$pkgname-$pkgver"

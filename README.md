@@ -1,5 +1,7 @@
 # complete-album
 
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/oak443/complete-album/package/complete-album/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/oak443/complete-album/)
+
 Fill a ripped FLAC album folder with Picard-compatible MusicBrainz tags and
 Cover Art Archive artwork.
 
@@ -26,6 +28,10 @@ Prebuilt binaries are attached to each
 (Linux musl, macOS, Windows) together with `SHA256SUMS`.
 
 ```bash
+# Fedora (COPR)
+sudo dnf copr enable oak443/complete-album
+sudo dnf install complete-album
+
 # Homebrew tap
 brew install oak443/complete-album/complete-album
 

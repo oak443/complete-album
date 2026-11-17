@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project uses
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-11-17
+
+### Added
+
+- Fedora RPM spec (`complete-album.spec`).
+- COPR source build via `.copr/Makefile` with vendored Rust crates.
+- Tag-triggered COPR submission in the release workflow.
+- Fedora install instructions via `dnf copr enable oak443/complete-album`.
+
 ## [0.1.0] - 2026-11-17
 
 ### Added
