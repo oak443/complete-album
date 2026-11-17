@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+.ONESHELL:
 outdir ?= $(CURDIR)/out
 spec ?= complete-album.spec
 
