@@ -22,10 +22,10 @@ brew install oak443/complete-album/complete-album
 
 Prebuilt binaries are on the
 [GitHub Releases](https://github.com/oak443/complete-album/releases/latest)
-page (Linux musl, macOS, Windows). From a checkout:
+page (Linux musl, macOS, Windows). From source:
 
 ```bash
-cargo install --path .
+cargo install --git https://github.com/oak443/complete-album
 ```
 
 ## Use
