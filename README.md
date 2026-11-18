@@ -5,11 +5,53 @@
 Fill a ripped FLAC album folder with Picard-compatible MusicBrainz tags and
 Cover Art Archive artwork.
 
-One command:
+## Install
+
+Fedora:
 
 ```bash
-complete-album /path/to/album
+sudo dnf copr enable oak443/complete-album
+sudo dnf install complete-album
 ```
+
+Homebrew:
+
+```bash
+brew install oak443/complete-album/complete-album
+```
+
+Prebuilt binaries are on the
+[GitHub Releases](https://github.com/oak443/complete-album/releases/latest)
+page (Linux musl, macOS, Windows). From a checkout:
+
+```bash
+cargo install --path .
+```
+
+## Use
+
+```bash
+# See what would change
+complete-album --dry-run /path/to/album
+
+# Write tags and artwork
+complete-album --user-agent 'complete-album/0.1 (you@example.com)' /path/to/album
+```
+
+`--dry-run` writes nothing. The second command updates the FLACs and saves the
+artwork beside them.
+
+## More options
+
+```bash
+# Override the release, or select a disc of a multi-disc set
+complete-album --release-id <mbid> --disc 2 /path/to/album
+
+# Metadata only
+complete-album --no-art /path/to/album
+```
+
+## What it does
 
 It reads the album's `MUSICBRAINZ_ALBUMID`, fetches the release from
 MusicBrainz, writes the full tag set Picard expects, and saves the artwork:
@@ -20,50 +62,6 @@ MusicBrainz, writes the full tag set Picard expects, and saves the artwork:
 
 Audio is never re-encoded. Only the tags this tool manages are replaced;
 ReplayGain, comments, user tags and non-front pictures are preserved.
-
-## Install
-
-Prebuilt binaries are attached to each
-[GitHub Release](https://github.com/oak443/complete-album/releases/latest)
-(Linux musl, macOS, Windows) together with `SHA256SUMS`.
-
-```bash
-# Fedora (COPR)
-sudo dnf copr enable oak443/complete-album
-sudo dnf install complete-album
-
-# Homebrew tap
-brew install oak443/complete-album/complete-album
-
-# After the crates.io release
-cargo install complete-album
-
-# From a checkout
-cargo install --path .
-
-# Or build locally
-cargo build --release
-./target/release/complete-album --help
-```
-
-The result is a single binary with no Python or runtime dependencies.
-Packaging files for AUR and Homebrew are under `packaging/`.
-
-## Usage
-
-```bash
-# See what would change, write nothing
-complete-album --dry-run /path/to/album
-
-# Write tags and artwork
-complete-album --user-agent 'complete-album/0.1 (you@example.com)' /path/to/album
-
-# Override the release, or select a disc of a multi-disc set
-complete-album --release-id <mbid> --disc 2 /path/to/album
-
-# Metadata only
-complete-album --no-art /path/to/album
-```
 
 MusicBrainz asks every client to send a descriptive `User-Agent` with a real
 contact. Set `--user-agent` or the `COMPLETE_ALBUM_USER_AGENT` environment

@@ -2,41 +2,51 @@
 
 Project: <https://copr.fedorainfracloud.org/coprs/oak443/complete-album/>
 
-The page is modelled on the `oak443/clash-verge-rev` project:
+The project page is deliberately short: install and use only. The Atomic
+Fedora path and build details live below, not in the first screen.
 
-- Description
-- Installation instructions, including the Atomic Fedora path
-- Homepage
-- Fedora 43/44/45 on x86_64 and aarch64
-- Pulp storage and Fedora branching follow enabled
-- One SCM package with webhook rebuild enabled
+## What users see
 
-`enable_net` stays `false` here because the RPM build uses the vendor tarball
-created by `.copr/Makefile`; the build does not need network access. This is
-the one deliberate difference from `clash-verge-rev`.
-
-## Description
+Description:
 
 ```text
 A command-line tool that adds MusicBrainz/Picard tags and Cover Art Archive artwork to ripped FLAC albums.
 ```
 
-## Instructions
+Instructions:
 
 ````markdown
-Enable this COPR repository:
+Install:
 
 ```bash
 sudo dnf copr enable oak443/complete-album
-```
-
-Install the latest build:
-
-```bash
 sudo dnf install complete-album
 ```
 
-On Atomic Fedora variants, enable the repository and install with `rpm-ostree`:
+Use:
+
+```bash
+complete-album --dry-run /path/to/album
+complete-album --user-agent 'complete-album/0.1 (you@example.com)' /path/to/album
+```
+
+More: https://github.com/oak443/complete-album
+````
+
+## Project settings
+
+- Fedora 43/44/45 on x86_64 and aarch64
+- Pulp storage
+- `follow_fedora_branching = true`
+- `auto_prune = true`
+- `appstream = false`
+- One SCM package, `complete-album`, with webhook rebuild enabled
+
+`enable_net` is `false`: `.copr/Makefile` vendors the Rust crates into the SRPM,
+so the RPM build does not need network access. This is the one deliberate
+difference from `oak443/clash-verge-rev`.
+
+## Advanced: Atomic Fedora
 
 ```bash
 # Get current Fedora version
@@ -49,15 +59,15 @@ sudo wget https://copr.fedorainfracloud.org/coprs/oak443/complete-album/repo/fed
 rpm-ostree install complete-album
 ```
 
-Usage:
+## Build source
 
-```bash
-complete-album --dry-run /path/to/album
-complete-album --user-agent 'complete-album/0.1 (you@example.com)' /path/to/album
+The package uses this repository directly:
+
+```text
+clone_url: https://github.com/oak443/complete-album.git
+spec: complete-album.spec
+source_build_method: make_srpm
 ```
 
-See the project page for the full guide:
-
-https://github.com/oak443/complete-album
-```
-````
+The release workflow builds GitHub binaries; COPR builds RPMs through a GitHub
+`create` webhook, with no COPR token stored in GitHub.
